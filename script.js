@@ -1,19 +1,30 @@
+console.log("JS carregou");
+
 function generateCode() {
     return Math.random().toString(36).substring(2, 7);
 }
 
 function shorten() {
+    console.log("Botão clicado");
+
     const input = document.getElementById("url");
     const result = document.getElementById("result");
 
+    if (!input || !result) {
+        console.log("Elemento não encontrado");
+        return;
+    }
+
     const url = input.value.trim();
-    if (!url) return;
+    if (!url) {
+        console.log("URL vazia");
+        return;
+    }
 
     const code = generateCode();
 
     const links = JSON.parse(localStorage.getItem("links") || "{}");
     links[code] = url;
-
     localStorage.setItem("links", JSON.stringify(links));
 
     const shortUrl = window.location.origin + window.location.pathname + "#" + code;
@@ -33,6 +44,15 @@ function redirect() {
 }
 
 document.addEventListener("DOMContentLoaded", () => {
-    document.getElementById("btn").addEventListener("click", shorten);
+    console.log("DOM pronto");
+
+    const btn = document.getElementById("btn");
+
+    if (!btn) {
+        console.log("Botão não encontrado");
+        return;
+    }
+
+    btn.addEventListener("click", shorten);
     redirect();
 });
