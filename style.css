@@ -95,3 +95,11 @@ button:hover {
   font-weight: bold;
 }
 
+#resultado {
+  margin-top: 20px;
+  min-height: 40px; /* garante que o spinner apareça */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
