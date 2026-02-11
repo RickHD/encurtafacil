@@ -5,7 +5,7 @@ function encurtar() {
 
   // Simulação (troque depois pela API real)
   const slug = Math.random().toString(36).substring(2, 8);
-  const shortUrl = `${window.location.origin}/${slug}`;
+  const shortUrl = `https://encurtafacil.encurtafacil.workers.dev/${slug}`;
 
   const resultado = document.getElementById("resultado");
 
