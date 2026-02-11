@@ -1,26 +1,43 @@
-function encurtar() {
+async function encurtar() {
   const input = document.getElementById("urlInput").value;
 
   if (!input) return;
 
-  // Simulação (troque depois pela API real)
-  const slug = Math.random().toString(36).substring(2, 8);
-  const shortUrl = `https://encurtafacil.encurtafacil.workers.dev/${slug}`;
-
   const resultado = document.getElementById("resultado");
 
-  resultado.innerHTML = `
-    <div>
-      <p>Link encurtado:</p>
-      <span class="short-link" onclick="copiar('${shortUrl}')">
-        ${shortUrl}
-      </span>
-    </div>
-  `;
+  try {
+    const response = await fetch("https://encurtafacil.encurtafacil.workers.dev/encurtar", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ url: input }),
+    });
+
+    const data = await response.json();
+
+    if (!response.ok) {
+      resultado.innerHTML = `<p>Erro ao encurtar link</p>`;
+      return;
+    }
+
+    const shortUrl = data.short;
+
+    resultado.innerHTML = `
+      <div>
+        <p>Link encurtado:</p>
+        <span class="short-link" onclick="copiar('${shortUrl}')">
+          ${shortUrl}
+        </span>
+      </div>
+    `;
+  } catch (e) {
+    resultado.innerHTML = `<p>Erro de conexão</p>`;
+  }
 }
 
-function copiar(texto) {
-  navigator.clipboard.writeText(texto);
+async function copiar(texto) {
+  await navigator.clipboard.writeText(texto);
 
   const toast = document.getElementById("toast");
 
