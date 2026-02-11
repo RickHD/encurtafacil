@@ -2,7 +2,7 @@
 <html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
-    <title>Encurtador</title>
+    <title>EncurtaFácil</title>
 
     <style>
         body {
@@ -23,10 +23,9 @@
             width: 420px;
             max-width: 90%;
             text-align: center;
-            box-shadow: 0 0 20px rgba(0,0,0,0.5);
         }
 
-        input {
+        input, button {
             width: 100%;
             padding: 12px;
             margin-top: 10px;
@@ -36,14 +35,8 @@
         }
 
         button {
-            width: 100%;
-            padding: 12px;
-            margin-top: 10px;
-            border: none;
-            border-radius: 8px;
             background: #4caf50;
             color: white;
-            font-size: 15px;
             cursor: pointer;
         }
 
@@ -51,35 +44,18 @@
             background: #43a047;
         }
 
-        #result {
-            margin-top: 15px;
-            word-break: break-all;
-        }
-
-        a {
-            color: #4caf50;
-        }
+        a { color: #4caf50; }
     </style>
 </head>
 <body>
 
 <div class="box">
-    <h2>Encurtador de Links</h2>
+    <h2>EncurtaFácil</h2>
     <input id="url" placeholder="Cole seu link aqui">
-    <button onclick="shorten()">Encurtar</button>
+    <button id="btn">Encurtar</button>
     <div id="result"></div>
 </div>
 
-<script>
-    function generateCode() {
-        return Math.random().toString(36).substring(2, 7);
-    }
-
-    function shorten() {
-        const input = document.getElementById("url");
-        const url = input.value.trim();
-        if (!url) return;
-
-        const code = generateCode();
-
-        const links = JSON.parse(localStorage.getItem("links") || "{}");
+<script src="script.js"></script>
+</body>
+</html>
