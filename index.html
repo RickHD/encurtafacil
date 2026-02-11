@@ -1,61 +1,23 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html lang="pt-br">
 <head>
-    <meta charset="UTF-8">
-    <title>EncurtaFácil</title>
-
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            background: #0f0f0f;
-            color: white;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            margin: 0;
-        }
-
-        .box {
-            background: #1a1a1a;
-            padding: 30px;
-            border-radius: 12px;
-            width: 420px;
-            max-width: 90%;
-            text-align: center;
-        }
-
-        input, button {
-            width: 100%;
-            padding: 12px;
-            margin-top: 10px;
-            border-radius: 8px;
-            border: none;
-            font-size: 15px;
-        }
-
-        button {
-            background: #4caf50;
-            color: white;
-            cursor: pointer;
-        }
-
-        button:hover {
-            background: #43a047;
-        }
-
-        a { color: #4caf50; }
-    </style>
+  <meta charset="UTF-8">
+  <title>EncurtaFacil</title>
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-<div class="box">
-    <h2>EncurtaFácil</h2>
-    <input id="url" placeholder="Cole seu link aqui">
-    <button id="btn">Encurtar</button>
-    <div id="result"></div>
-</div>
+  <div class="container">
+    <h1>EncurtaFacil</h1>
 
-<script src="script.js"></script>
+    <input id="urlInput" type="text" placeholder="Cole seu link aqui">
+    <button onclick="encurtar()">Encurtar</button>
+
+    <div id="resultado"></div>
+  </div>
+
+  <div id="toast">Copiado para a área de transferência!</div>
+
+  <script src="script.js"></script>
 </body>
 </html>
