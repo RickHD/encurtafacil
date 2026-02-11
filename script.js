@@ -21,7 +21,7 @@ async function encurtar() {
       return;
     }
 
-    const shortUrl = data.short;
+    const shortUrl = data.shortUrl;
 
     resultado.innerHTML = `
       <div>
