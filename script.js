@@ -1,58 +1,34 @@
-console.log("JS carregou");
+function encurtar() {
+  const input = document.getElementById("urlInput").value;
 
-function generateCode() {
-    return Math.random().toString(36).substring(2, 7);
+  if (!input) return;
+
+  // Simulação (troque depois pela API real)
+  const slug = Math.random().toString(36).substring(2, 8);
+  const shortUrl = `${window.location.origin}/${slug}`;
+
+  const resultado = document.getElementById("resultado");
+
+  resultado.innerHTML = `
+    <div>
+      <p>Link encurtado:</p>
+      <span class="short-link" onclick="copiar('${shortUrl}')">
+        ${shortUrl}
+      </span>
+    </div>
+  `;
 }
 
-function shorten() {
-    console.log("Botão clicado");
+function copiar(texto) {
+  navigator.clipboard.writeText(texto);
 
-    const input = document.getElementById("url");
-    const result = document.getElementById("result");
+  const toast = document.getElementById("toast");
 
-    if (!input || !result) {
-        console.log("Elemento não encontrado");
-        return;
-    }
+  toast.classList.remove("hide");
+  toast.classList.add("show");
 
-    const url = input.value.trim();
-    if (!url) {
-        console.log("URL vazia");
-        return;
-    }
-
-    const code = generateCode();
-
-    const links = JSON.parse(localStorage.getItem("links") || "{}");
-    links[code] = url;
-    localStorage.setItem("links", JSON.stringify(links));
-
-    const shortUrl = window.location.origin + window.location.pathname + "#" + code;
-
-    result.innerHTML = `Link curto:<br><a href="${shortUrl}">${shortUrl}</a>`;
+  setTimeout(() => {
+    toast.classList.remove("show");
+    toast.classList.add("hide");
+  }, 1800);
 }
-
-function redirect() {
-    const code = window.location.hash.substring(1);
-    if (!code) return;
-
-    const links = JSON.parse(localStorage.getItem("links") || "{}");
-
-    if (links[code]) {
-        window.location.href = links[code];
-    }
-}
-
-document.addEventListener("DOMContentLoaded", () => {
-    console.log("DOM pronto");
-
-    const btn = document.getElementById("btn");
-
-    if (!btn) {
-        console.log("Botão não encontrado");
-        return;
-    }
-
-    btn.addEventListener("click", shorten);
-    redirect();
-});
