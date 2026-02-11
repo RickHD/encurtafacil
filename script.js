@@ -1,8 +1,12 @@
+const btn = document.getElementById("btnEncurtar");
+btn.addEventListener("click", encurtar);
+
 async function encurtar() {
   const input = document.getElementById("urlInput").value.trim();
   if (!input) return;
 
   const resultado = document.getElementById("resultado");
+  btn.disabled = true; // desabilita botão
 
   // Feedback visual de loading
   resultado.innerHTML = `
@@ -31,16 +35,16 @@ async function encurtar() {
     resultado.innerHTML = `
       <div>
         <p>Link encurtado:</p>
-        <a href="${shortUrl}" target="_blank" class="short-link">
-          ${shortUrl}
-        </a>
+        <a href="${shortUrl}" target="_blank" class="short-link">${shortUrl}</a>
         <button onclick="copiar('${shortUrl}')">Copiar</button>
       </div>
     `;
 
-    document.getElementById("urlInput").value = ""; // limpa o input
+    document.getElementById("urlInput").value = ""; // limpa input
   } catch (e) {
     resultado.innerHTML = `<p class="error">Erro de conexão</p>`;
+  } finally {
+    btn.disabled = false; // reabilita botão
   }
 }
 
