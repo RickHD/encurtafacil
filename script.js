@@ -6,7 +6,7 @@ async function encurtar() {
   const resultado = document.getElementById("resultado");
 
   try {
-    const response = await fetch("https://encurtafacil.encurtafacil.workers.dev/encurtar", {
+    const response = await fetch("https://encurtafacil.encurtafacil.workers.dev/", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
