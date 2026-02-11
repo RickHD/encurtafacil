@@ -3,7 +3,14 @@ async function encurtar() {
   if (!input) return;
 
   const resultado = document.getElementById("resultado");
-  resultado.innerHTML = `<p>Gerando link...</p>`;
+
+  // Feedback visual de loading
+  resultado.innerHTML = `
+    <div class="loading">
+      <div class="spinner"></div>
+      <span>Gerando link...</span>
+    </div>
+  `;
 
   try {
     const response = await fetch("https://encurtafacil.encurtafacil.workers.dev/encurtar", {
@@ -15,7 +22,7 @@ async function encurtar() {
     const data = await response.json();
 
     if (!response.ok) {
-      resultado.innerHTML = `<p>Erro ao encurtar link: ${data.error || "desconhecido"}</p>`;
+      resultado.innerHTML = `<p class="error">Erro ao encurtar link: ${data.error || "desconhecido"}</p>`;
       return;
     }
 
@@ -33,7 +40,7 @@ async function encurtar() {
 
     document.getElementById("urlInput").value = ""; // limpa o input
   } catch (e) {
-    resultado.innerHTML = `<p>Erro de conexão</p>`;
+    resultado.innerHTML = `<p class="error">Erro de conexão</p>`;
   }
 }
 
